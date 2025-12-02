@@ -132,13 +132,9 @@ model = ChatOpenAI(
 ```python
 response = model.invoke("What is LangChain in one sentence?")
 print("🤖 AI Response:", response.content)
-```
+``` 
 
-### Try it yourself: 
-
-**Examine the code in**: [`code/01_hello_world.py`](./code/01_hello_world.py)
-
-Then in your terminal: <br>
+**Code**: [`code/01_hello_world.py`](./code/01_hello_world.py)
 **Run**: `python 01-introduction/code/01_hello_world.py`
 
 **This is the full example code**:
@@ -215,13 +211,9 @@ LLMs work best with structured conversations. LangChain provides message types t
 
 ### Example 2: Message Types
 
-Let's see how to use SystemMessage and HumanMessage to control AI behavior and set the tone of responses.
+Let's see how to use SystemMessage and HumanMessage to control AI behavior and set the tone of responses. 
 
-### Try it yourself: 
-
-**Examine the code in**: [`code/02_message_types.py`](./code/02_message_types.py)
-
-Then in your terminal: <br>
+**Code**: [`code/02_message_types.py`](./code/02_message_types.py)
 **Run**: `python 01-introduction/code/02_message_types.py`
 
 **This is the full example code**:
@@ -309,11 +301,7 @@ Think of it like choosing between calculators: a scientific calculator handles c
 
 Let's see how to programmatically compare different models side-by-side.
 
-### Try it yourself: 
-
-**Examine the code in**: [`code/03_model_comparison.py`](./code/03_model_comparison.py) 
-
-Then in your terminal: <br>
+**Code**: [`code/03_model_comparison.py`](./code/03_model_comparison.py) 
 **Run**: `python 01-introduction/code/03_model_comparison.py`
 
 **This is the full example code**:
@@ -408,7 +396,7 @@ Response: Recursion is when a function calls itself to solve a problem by breaki
 
 **Want to use Microsoft Foundry instead of GitHub Models?** All the code you just wrote will work with zero changes!
 
-Simply update your `.env` file with your Azure endpoint and API key. For detailed setup instructions, see the [Azure AI Foundry Setup](../00-course-setup/APPENDIX.md#azure-ai-foundry-setup).
+Simply update your `.env` file with your Azure endpoint and API key. For detailed setup instructions, see the [Microsoft Foundry Setup](../00-course-setup/APPENDIX.md#azure-ai-foundry-setup).
 
 ---
 
@@ -425,7 +413,7 @@ graph LR
     A --> F[Memory]
     B --> G[Provider Abstraction]
     G --> H[GitHub Models]
-    G --> I[Azure AI Foundry]
+    G --> I[Microsoft Foundry]
 ```
 
 *These concepts work together to create powerful AI applications. You'll explore each in depth throughout the course.*
@@ -465,7 +453,7 @@ Let's review what you learned:
 - **LangChain is an abstraction layer** - It provides a consistent interface across different LLM providers
 - **Built on composable components** - Models, prompts, tools, agents, and memory work together
 - **GitHub Models offers free access** - Perfect for learning and prototyping
-- **Azure AI Foundry is production-ready** - Switch anytime by changing the environment variables in your `.env` file
+- **Microsoft Foundry is production-ready** - Switch anytime by changing the environment variables in your `.env` file
 - **Messages have types** - SystemMessage, HumanMessage, and AIMessage serve different purposes
 
 ---
@@ -506,11 +494,11 @@ You've laid the foundation in this chapter. Next, you'll start with basic AI con
 
 If you get stuck or have any questions about building AI apps, join:
 
-[![Azure AI Foundry Discord](https://img.shields.io/badge/Discord-Azure_AI_Foundry_Community_Discord-blue?style=for-the-badge&logo=discord&color=5865f2&logoColor=fff)](https://aka.ms/foundry/discord)
+[![Microsoft Foundry Discord](https://img.shields.io/badge/Discord-Azure_AI_Foundry_Community_Discord-blue?style=for-the-badge&logo=discord&color=5865f2&logoColor=fff)](https://aka.ms/foundry/discord)
 
 If you have product feedback or errors while building visit:
 
-[![Azure AI Foundry Developer Forum](https://img.shields.io/badge/GitHub-Azure_AI_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
+[![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Azure_AI_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 
 If you run into issues with the course materials, please open an issue in the GitHub repo:
 

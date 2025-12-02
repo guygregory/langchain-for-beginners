@@ -77,7 +77,7 @@ Before starting this course, you should be comfortable with:
 
 ## 👫 Meet Other Learners, Get Your Questions Answered
 
-If you get stuck or have any questions about building AI Agents, join our dedicated LangChain Discord Channel in the [Azure AI Foundry Community Discord](https://aka.ms/langchain-foundry/discord).
+If you get stuck or have any questions about building AI Agents, join our dedicated LangChain Discord Channel in the [Microsoft Foundry Community Discord](https://aka.ms/langchain-foundry/discord).
 
 ## 🙏 Want to help?
 
@@ -138,11 +138,11 @@ Do you have suggestions or found spelling or code errors? [Raise an issue](https
 
 If you get stuck or have any questions about building AI apps, join:
 
-[![Azure AI Foundry Discord](https://img.shields.io/badge/Discord-Azure_AI_Foundry_Community_Discord-blue?style=for-the-badge&logo=discord&color=5865f2&logoColor=fff)](https://aka.ms/foundry/discord)
+[![Microsoft Foundry Discord](https://img.shields.io/badge/Discord-Azure_AI_Foundry_Community_Discord-blue?style=for-the-badge&logo=discord&color=5865f2&logoColor=fff)](https://aka.ms/foundry/discord)
 
 If you have product feedback or errors while building visit:
 
-[![Azure AI Foundry Developer Forum](https://img.shields.io/badge/GitHub-Azure_AI_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
+[![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Azure_AI_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 
 ---
 
