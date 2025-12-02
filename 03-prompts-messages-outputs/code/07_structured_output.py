@@ -30,7 +30,7 @@ class Person(BaseModel):
 def main():
     print("📋 Structured Output Example\n")
 
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     # Create a model that returns structured output
     structured_model = model.with_structured_output(Person)

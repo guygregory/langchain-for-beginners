@@ -31,7 +31,7 @@ def standard_openai_example():
     # Uncomment and add OPENAI_API_KEY to your .env to test:
     """
     model = init_chat_model(
-        "gpt-4o-mini",
+        "gpt-5-mini",
         model_provider="openai",
         temperature=0.7,
         api_key=os.environ.get("OPENAI_API_KEY"),
@@ -55,7 +55,7 @@ def switching_providers():
     """
     # OpenAI
     openai_model = init_chat_model(
-        "gpt-4o-mini",
+        "gpt-5-mini",
         model_provider="openai",
         api_key=os.environ.get("OPENAI_API_KEY"),
     )
@@ -83,7 +83,7 @@ def course_recommendation():
     print("\n=== Recommended Approach for This Course ===\n")
 
     # For GitHub Models and Azure OpenAI, use ChatOpenAI directly:
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     response = model.invoke([HumanMessage(content="What is LangChain in one sentence?")])
 

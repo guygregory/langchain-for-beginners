@@ -20,7 +20,7 @@ load_dotenv()
 def main():
     print("📝 Basic Prompt Template Example\n")
 
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     # Create a reusable translation template
     template = ChatPromptTemplate.from_messages([

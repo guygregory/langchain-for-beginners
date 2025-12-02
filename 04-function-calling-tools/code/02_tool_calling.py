@@ -41,7 +41,7 @@ def main():
     print("=" * 80 + "\n")
 
     # Create model and bind tools
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     model_with_tools = model.bind_tools([calculator])
 

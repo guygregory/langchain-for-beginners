@@ -20,7 +20,7 @@ load_dotenv()
 def emotion_to_emoji_example():
     print("1️⃣  Example: Emotion to Emoji Converter\n")
 
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     examples = [
         {"input": "happy", "output": "😊"},
@@ -60,7 +60,7 @@ def code_comment_example():
     print("\n" + "=" * 80)
     print("\n2️⃣  Example: Code Comment Generator\n")
 
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     # Examples of code → comment pairs
     examples = [

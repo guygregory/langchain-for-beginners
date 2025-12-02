@@ -76,7 +76,7 @@ def main():
     print("=" * 80 + "\n")
 
     # Create the model
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     # Create agent using create_react_agent() - handles ReAct loop automatically
     agent = create_react_agent(model, tools=[search, calculator])

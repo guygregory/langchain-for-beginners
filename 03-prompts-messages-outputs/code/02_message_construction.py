@@ -25,7 +25,7 @@ load_dotenv()
 def main():
     print("🔨 Message Construction Patterns\n")
 
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     # ==========================================
     # PATTERN 1: Basic Message Types

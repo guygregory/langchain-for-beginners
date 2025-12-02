@@ -53,7 +53,7 @@ def main():
     print("🤖 Agent with create_react_agent() Example\n")
 
     # Create the model
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     # Create agent using create_react_agent() - that's it!
     agent = create_react_agent(model, tools=[calculator])

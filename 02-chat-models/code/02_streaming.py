@@ -21,7 +21,7 @@ load_dotenv()
 def non_streaming_example():
     print("📝 Non-Streaming (traditional way):\n")
 
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     start_time = time.time()
     response = model.invoke("Explain how the internet works in 2 paragraphs.")
@@ -36,7 +36,7 @@ def streaming_example():
     print("\n" + "=" * 80)
     print("⚡ Streaming (appears immediately):\n")
 
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     start_time = time.time()
     first_chunk_time = 0
