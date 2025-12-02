@@ -59,7 +59,7 @@ def main():
     print("⛅ Weather Tool - Complete Execution Loop\n")
     print("=" * 80 + "\n")
 
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     model_with_tools = model.bind_tools([get_weather])
 

@@ -20,7 +20,7 @@ load_dotenv()
 def educator_example():
     print("1️⃣  Example: Composable Educator Prompts\n")
 
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     # Reusable prompt pieces
     system_role = "You are an expert {domain} educator."
@@ -63,7 +63,7 @@ def customer_service_example():
     print("\n" + "=" * 80)
     print("\n2️⃣  Example: Customer Service Templates\n")
 
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     # Composable pieces for customer service
     brand_voice = "You represent {company_name}, known for {brand_personality}."
@@ -94,7 +94,7 @@ def partial_template_example():
     print("\n" + "=" * 80)
     print("\n3️⃣  Example: Partial Templates (Pre-fill Some Variables)\n")
 
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     # Create a template with many variables
     template = ChatPromptTemplate.from_messages([

@@ -28,7 +28,7 @@ def temperature_experiment():
         print("-" * 80)
 
         model = ChatOpenAI(
-            model=os.environ.get("AI_MODEL", "gpt-4o-mini"),
+            model=os.environ.get("AI_MODEL", "gpt-5-mini"),
             temperature=temp,
         )
 

@@ -94,7 +94,7 @@ def main():
     print("🎛️  Multi-Tool Agent with create_react_agent()\n")
 
     # Create model
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     # Create agent with all three tools
     agent = create_react_agent(model, tools=[calculator, get_weather, search])

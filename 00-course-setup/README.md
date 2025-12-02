@@ -1,6 +1,6 @@
 # Course Setup
 
-Welcome! Before we dive into building AI applications with LangChain, let's get your development environment ready. This chapter walks you through setting up your development environment and getting your GitHub token for free AI model access (you can also use Azure AI Foundry for more tokens). By the end, you'll have everything you need to start building with LangChain.
+Welcome! Before we dive into building AI applications with LangChain, let's get your development environment ready. This chapter walks you through setting up your development environment and getting your GitHub token for free AI model access (you can also use Microsoft Foundry.) By the end, you'll have everything you need to start building with LangChain.
 
 ## Prerequisites
 
@@ -35,24 +35,27 @@ While GitHub Models is a great option for this course, if you have an Azure subs
 
 Choose from one of the following options to set up your development environment. The easiest way to get started is GitHub Codespaces, since it will setup all the tools for you, but you can also set it up locally:
 
-1. [**GitHub Codespaces**](#github-codespaces): Use a cloud-based development environment (recommended.)
+1. [**GitHub Codespaces**](#github-codespaces): Use a cloud-based development environment (**recommended**)
 2. [**Local Development**](#local-development): Set up your environment on your machine.
 
 ---
 
 ## GitHub Codespaces
 
-1. You can open this course in GitHub Codespaces. This button will open a web-based VS Code instance in your browser:
+### Step 1: Open the Codespace for this course
+
+You can open this course in GitHub Codespaces. The button below will take you to a page that has a green button that says `CREATE A CODESPACE`. Click that button and wait for the codespace to load. A web-based VS Code instance will open in your browser when loaded. 
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/microsoft/langchain-for-beginners)
 
-2. **Wait for Initialization**: It will take a few moments to set up your environment.
-3. **Access the Terminal**: Once ready, open the terminal in Codespaces (Terminal > New Terminal).
-4. **Environment Variables**: All of your environment variables are setup for you in Codespaces. GitHub Models is used by default and provides free access to powerful AI models. To use Github Models you need a Personal Access Token, which in Codespaces will already be added to your `.env` file.
+The terminal should automatically open and in it you should see `(.venv)` in front of your username. This shows that a Python virtual enviroment has been activated. This environemnt already has all the python packages required for this course installed. 
 
 ---
 
-### Examine your `.env` file
+### Step 2: Examine your `.env` file
+
+All of your environment variables are automatically setup for you in Codespaces. 
+GitHub Models is used by default and provides free access to AI models. To use Github Models you need a Personal Access Token. In Codespaces this token, the correct endpoint and model will automatically be added to your `.env` file.
 
 Ensure that your `.env` file exists and examine it to make sure it has these required variables.
 
@@ -216,16 +219,6 @@ Model response: Setup successful!
 If you see this, you're all set! If not, check the troubleshooting section below.
 
 ---
-
-### Step 6: Install VS Code (Recommended)
-
-While you can use any text editor, we recommend **Visual Studio Code** for the best experience.
-
-#### Install VS Code
-
-1. Visit [code.visualstudio.com](https://code.visualstudio.com/)
-2. Download for your OS
-3. Install and launch VS Code
 
 ## ✅ Setup Checklist
 

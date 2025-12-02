@@ -13,7 +13,7 @@ from langchain_openai import ChatOpenAI
 load_dotenv()
 
 # Create a ChatOpenAI instance
-model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
 # Define different personalities via system prompts
 personalities = [
@@ -23,7 +23,7 @@ personalities = [
 ]
 
 # The same question for all personalities
-question = "What is Python programming?"
+question = "What is artificial intelligence?"
 
 # Test each personality
 for personality in personalities:

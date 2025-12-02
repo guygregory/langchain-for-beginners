@@ -41,7 +41,7 @@ class Company(BaseModel):
 def main():
     print("🏢 Complex Structured Output Example\n")
 
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     # Create structured model
     structured_model = model.with_structured_output(Company)

@@ -21,7 +21,7 @@ def main():
     print("🎨 Template Formats Example\n")
     print("=" * 80)
 
-    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-4o-mini"))
+    model = ChatOpenAI(model=os.environ.get("AI_MODEL", "gpt-5-mini"))
 
     # Format 1: ChatPromptTemplate (structured messages)
     print("\n1️⃣  ChatPromptTemplate (Recommended for chat models):\n")

@@ -13,10 +13,10 @@ from langchain_openai import ChatOpenAI
 load_dotenv()
 
 # Models to compare
-models_to_test = ["gpt-4o", "gpt-4o-mini"]
+models_to_test = ["gpt-5", "gpt-5-mini"]
 
 # Test prompt
-prompt = "Explain the concept of machine learning in 2-3 sentences."
+prompt = "Explain the difference between machine learning and deep learning."
 
 
 def test_model(model_name: str) -> dict:

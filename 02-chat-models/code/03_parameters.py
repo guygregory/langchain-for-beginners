@@ -17,7 +17,7 @@ load_dotenv()
 
 
 def temperature_comparison():
-    model_name = os.environ.get("AI_MODEL", "gpt-4o-mini")
+    model_name = os.environ.get("AI_MODEL", "gpt-5-mini")
     print(f"🌡️  Temperature Comparison for {model_name}\n")
     print("=" * 80)
 
@@ -70,7 +70,7 @@ def max_tokens_example():
         print("-" * 80)
 
         model = ChatOpenAI(
-            model=os.environ.get("AI_MODEL", "gpt-4o-mini"),
+            model=os.environ.get("AI_MODEL", "gpt-5-mini"),
             max_tokens=max_tokens,
         )
 
