@@ -15,7 +15,7 @@ A course teaching everything you need to know to start building AI Agents with L
 
 ## 🦜🔗 Welcome
 
-Welcome to **LangChain for Beginners**! This course will cover the fundamentals of building with LangChain and Python. It contains [**9 lessons**](#️-lessons) that each focus on a specific concept. To **get started** right away you can navigate to the [course-setup](/00-course-setup/) chapter, but you're encouraged to read the overview below first.
+Welcome to **LangChain for Beginners**! This course will cover the fundamentals of building with LangChain and Python. It contains [**9 chapters**](#-table-of-contents) that each focus on a specific concept. To **get started** right away you can navigate to the [course-setup](/00-course-setup/) chapter, but you're encouraged to read the overview below first.
 
 ### What You'll Learn and Build
 
@@ -36,29 +36,29 @@ Don't forget to [star (🌟)](https://github.com/microsoft/langchain-for-beginne
 
 ---
 
-## 🗃️ Lessons
+## 📚 Table of Contents
 
-This course contains **9 chapters** (setup + 8 lessons), each building on the previous to teach you LangChain from the ground up. Each chapter includes conceptual explanations, working code examples, and hands-on challenges (videos coming soon.)
+This course contains **9 chapters** (setup + 8 chapters), each building on the previous to teach you LangChain from the ground up. Each chapter includes conceptual explanations, working code examples, and hands-on challenges.
 
-| #  | **Lesson**                                   | **Lesson Link**                                    | **Video**                                                  | **Extra Learning**                                                                     |
-|----|----------------------------------------------|----------------------------------------------------|------------------------------------------------------------|----------------------------------------------------------------------------------------|
-| 0  | Course Setup                                 | [Link](./00-course-setup/README.md)                | [Video]()  | [Link]() |
-| 1  | Intro to LangChain and Agent Use Cases       | [Link](./01-introduction/README.md)                | [Video]()  | [Link]() |
-| 2  | Chat Models & Basic Interactions             | [Link](./02-chat-models/README.md)                 | [Video]()  | [Link]() |
-| 3  | Prompts, Messages, and Structured Outputs    | [Link](./03-prompts-messages-outputs/README.md)    | [Video]()  | [Link]() |
-| 4  | Function Calling & Tools                     | [Link](./04-function-calling-tools/README.md)      | [Video]()  | [Link]() |
-| 5  | Getting Started with Agents                  | [Link](./05-agents/README.md)                      | [Video]()  | [Link]() |
-| 6  | Model Context Protocol (MCP)                 | [Link](./06-mcp/README.md)                         | [Video]() | [Link]() |
-| 7  | Documents, Embeddings & Semantic Search      | [Link](./07-documents-embeddings-semantic-search/README.md) | [Video]()  | [Link]() |
-| 8  | Building Agentic RAG Systems                 | [Link](./08-agentic-rag-systems/README.md)         | [Video]()  | [Link]() |
-|    |                                                                                                |
+| # | Chapter | Description | Key Concepts |
+|---|---------|-------------|--------------|
+| 0 | [Course Setup](./00-course-setup/README.md) | Set up your development environment (local or cloud-based) | Python, Azure AI Foundry, Codespaces, environment variables |
+| 1 | [Introduction to LangChain](./01-introduction/README.md) | Understanding the framework and core concepts | LangChain fundamentals, first LLM call |
+| 2 | [Chat Models & Basic Interactions](./02-chat-models/README.md) | Chat models, messages, and conversations | Message types, streaming, error handling, temperature |
+| 3 | [Prompts, Messages, and Structured Outputs](./03-prompts-messages-outputs/README.md) | Working with prompts, message arrays, and type-safe outputs | Messages, templates, structured outputs, Pydantic schemas |
+| 4 | [Function Calling & Tools](./04-function-calling-tools/README.md) | Extending AI capabilities with function calling and tools | Pydantic schemas, tool binding, type safety |
+| 5 | [Getting Started with Agents](./05-agents/README.md) | Building autonomous agents that reason and choose tools | ReAct pattern, agent loops, create_agent(), middleware |
+| 6 | [Model Context Protocol (MCP)](./06-mcp/README.md) | Connect AI to external services using the MCP standard | MCP servers, stdio transports, tool integration, multi-server patterns |
+| 7 | [Documents, Embeddings & Semantic Search](./07-documents-embeddings-semantic-search/README.md) | Loading documents, creating embeddings, and building semantic search | Document loading, chunking, vector embeddings, similarity search |
+| 8 | [Building Agentic RAG Systems](./08-agentic-rag-systems/README.md) | Building RAG systems where agents intelligently decide when to search documents | Agentic RAG (agents decide when to search), retrieval tools, intelligent Q&A |
 
-📂 Each lesson includes:
-
+Each chapter includes:
 - 📖 **Conceptual explanations** with real-world analogies
 - 💻 **Code examples** you can run immediately
 - 🎯 **Hands-on challenges** to test your understanding
 - 🔑 **Key takeaways** to reinforce learning
+
+We're planning to expand this course over time with additional topics. Stay tuned for updates!
 
 ---
 
@@ -96,8 +96,8 @@ Do you have suggestions or found spelling or code errors? [Raise an issue](https
 ## Additional Resources
 
 ### LangChain
-[![LangChain4j for Beginners](https://img.shields.io/badge/LangChain4j%20for%20Beginners-22C55E?style=for-the-badge&&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchain4j-for-beginners)
 [![LangChain.js for Beginners](https://img.shields.io/badge/LangChain.js%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchainjs-for-beginners?WT.mc_id=m365-94501-dwahlin)
+[![LangChain4j for Beginners](https://img.shields.io/badge/LangChain4j%20for%20Beginners-22C55E?style=for-the-badge&&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchain4j-for-beginners)
 
 ---
 
@@ -164,4 +164,3 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 ## Trademarks
 
 This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft trademarks or logos is subject to and must follow [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general). Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship. Any use of third-party trademarks or logos is subject to those third-parties' policies.
-
