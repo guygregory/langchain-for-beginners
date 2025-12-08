@@ -7,6 +7,7 @@ In this chapter, you'll learn the complete pipeline for working with documents i
 ## Prerequisites
 
 - Completed [Getting Started with Agents](../05-agents/README.md)
+- Environment variables configured (see [Course Setup](../00-course-setup/README.md))
 
 ## 🎯 Learning Objectives
 
@@ -17,8 +18,8 @@ By the end of this chapter, you'll be able to:
 - ✅ Understand chunking strategies and their trade-offs
 - ✅ Work with document metadata
 - ✅ Understand what embeddings are and how they work
-- ✅ Create embeddings for text using AI models
-- ✅ Store embeddings in vector databases
+- ✅ Create embeddings for text using Azure AI models
+- ✅ Store embeddings in vector stores
 - ✅ Perform semantic similarity searches
 - ✅ Build the foundation for RAG systems
 
@@ -74,11 +75,12 @@ LLMs need text input, but data comes in many formats: text files, PDFs, websites
 
 ```python
 from langchain_community.document_loaders import TextLoader
-from dotenv import load_dotenv
-
-load_dotenv()
+from pathlib import Path
 
 # Create sample data
+data_dir = Path("./data")
+data_dir.mkdir(exist_ok=True)
+
 sample_text = """
 LangChain is a framework for building applications with large language models.
 
@@ -92,8 +94,7 @@ It provides tools for:
 The framework is designed to be modular and composable.
 """
 
-with open("./data/sample.txt", "w") as f:
-    f.write(sample_text.strip())
+(data_dir / "sample.txt").write_text(sample_text.strip())
 
 # Load the document
 loader = TextLoader("./data/sample.txt")
@@ -167,6 +168,38 @@ for i, doc in enumerate(docs):
 
 ---
 
+### Example 3: Comparing Chunk Overlap
+
+**Code**: [`code/03_overlap.py`](./code/03_overlap.py)  
+**Run**: `python 07-documents-embeddings-semantic-search/code/03_overlap.py`
+
+This example compares chunks with and without overlap to show how overlap preserves context.
+
+---
+
+### Example 4: Working with Metadata
+
+**Code**: [`code/04_metadata.py`](./code/04_metadata.py)  
+**Run**: `python 07-documents-embeddings-semantic-search/code/04_metadata.py`
+
+Metadata helps you track document source, filter by category, and understand context:
+
+```python
+from langchain_core.documents import Document
+
+doc = Document(
+    page_content="LangChain is a framework...",
+    metadata={
+        "source": "langchain-guide.md",
+        "category": "tutorial",
+        "date": "2024-01-15",
+        "author": "Tech Team",
+    },
+)
+```
+
+---
+
 ## 🔢 Part 2: Embeddings
 
 ### What Are Embeddings?
@@ -175,43 +208,58 @@ Embeddings convert text into numerical vectors that capture semantic meaning:
 - Similar concepts → Similar vectors
 - "king" - "man" + "woman" ≈ "queen"
 
-### Example 3: Creating Embeddings
+### Example 5: Creating Embeddings with Azure AI
 
-**Code**: [`code/03_embeddings.py`](./code/03_embeddings.py)  
-**Run**: `python 07-documents-embeddings-semantic-search/code/03_embeddings.py`
+**Code**: [`code/05_basic_embeddings.py`](./code/05_basic_embeddings.py)  
+**Run**: `python 07-documents-embeddings-semantic-search/code/05_basic_embeddings.py`
 
 **Example code:**
 
 ```python
-from langchain_openai import OpenAIEmbeddings
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
+from langchain_openai import AzureOpenAIEmbeddings
 
 load_dotenv()
 
-# Initialize embeddings model
-embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
-
-# Embed a single text
-text = "LangChain is a framework for building AI applications"
-vector = embeddings.embed_query(text)
-
-print(f"Text: {text}")
-print(f"Vector dimensions: {len(vector)}")
-print(f"First 5 values: {vector[:5]}")
+# Initialize Azure OpenAI embeddings model
+embeddings = AzureOpenAIEmbeddings(
+    azure_endpoint=os.getenv("AI_ENDPOINT"),
+    api_key=os.getenv("AI_API_KEY"),
+    model=os.getenv("AI_EMBEDDING_MODEL", "text-embedding-ada-002"),
+    api_version="2024-02-01",
+)
 
 # Embed multiple texts
 texts = [
-    "LangChain is a framework for building AI applications",
-    "Python is a programming language",
-    "Building AI apps with LangChain is easy",
+    "LangChain makes building AI apps easier",
+    "LangChain simplifies AI application development",
+    "I love eating pizza for dinner",
+    "The weather is sunny today",
 ]
 
-vectors = embeddings.embed_documents(texts)
+all_embeddings = embeddings.embed_documents(texts)
 
-print(f"\nEmbedded {len(vectors)} texts")
-for i, (text, vec) in enumerate(zip(texts, vectors)):
-    print(f"  {i}: {text[:40]}... → {len(vec)} dimensions")
+print(f"Created {len(all_embeddings)} embeddings")
+print(f"Each embedding has {len(all_embeddings[0])} dimensions")
+```
+
+### Cosine Similarity
+
+To compare embeddings, we use cosine similarity:
+
+```python
+import math
+
+def cosine_similarity(a: list[float], b: list[float]) -> float:
+    """Calculate cosine similarity between two vectors."""
+    dot_product = sum(x * y for x, y in zip(a, b))
+    mag_a = math.sqrt(sum(x * x for x in a))
+    mag_b = math.sqrt(sum(x * x for x in b))
+    return dot_product / (mag_a * mag_b)
+
+# Similar meanings → High similarity scores (>0.8)
+# Different topics → Low similarity scores (<0.5)
 ```
 
 ---
@@ -224,20 +272,29 @@ Vector stores are databases optimized for storing and searching embeddings:
 - Store: Add documents with their embeddings
 - Search: Find similar documents using vector similarity
 
-### Example 4: Using FAISS Vector Store
+### Example 6: Using InMemoryVectorStore
 
-**Code**: [`code/04_vector_store.py`](./code/04_vector_store.py)  
-**Run**: `python 07-documents-embeddings-semantic-search/code/04_vector_store.py`
+**Code**: [`code/06_vector_store.py`](./code/06_vector_store.py)  
+**Run**: `python 07-documents-embeddings-semantic-search/code/06_vector_store.py`
 
 **Example code:**
 
 ```python
-from langchain_openai import OpenAIEmbeddings
-from langchain_community.vectorstores import FAISS
-from langchain_core.documents import Document
+import os
 from dotenv import load_dotenv
+from langchain_core.documents import Document
+from langchain_core.vectorstores import InMemoryVectorStore
+from langchain_openai import AzureOpenAIEmbeddings
 
 load_dotenv()
+
+# Create embeddings model
+embeddings = AzureOpenAIEmbeddings(
+    azure_endpoint=os.getenv("AI_ENDPOINT"),
+    api_key=os.getenv("AI_API_KEY"),
+    model=os.getenv("AI_EMBEDDING_MODEL", "text-embedding-ada-002"),
+    api_version="2024-02-01",
+)
 
 # Create sample documents
 docs = [
@@ -248,11 +305,8 @@ docs = [
     Document(page_content="RAG combines retrieval with generation for accurate answers"),
 ]
 
-# Create embeddings
-embeddings = OpenAIEmbeddings()
-
 # Create vector store from documents
-vector_store = FAISS.from_documents(docs, embeddings)
+vector_store = InMemoryVectorStore.from_documents(docs, embeddings)
 print(f"Created vector store with {len(docs)} documents")
 
 # Perform similarity search
@@ -279,97 +333,71 @@ Top 2 results:
 
 ---
 
-## 🔍 Part 4: Semantic Search
+## 🎯 Part 4: Similarity Search with Scores
 
-### Example 5: Complete Semantic Search System
+### Example 7: Search with Similarity Scores
 
-**Code**: [`code/05_semantic_search.py`](./code/05_semantic_search.py)  
-**Run**: `python 07-documents-embeddings-semantic-search/code/05_semantic_search.py`
-
-**Example code:**
+**Code**: [`code/07_similarity_scores.py`](./code/07_similarity_scores.py)  
+**Run**: `python 07-documents-embeddings-semantic-search/code/07_similarity_scores.py`
 
 ```python
-from langchain_openai import OpenAIEmbeddings
-from langchain_community.vectorstores import FAISS
-from langchain_community.document_loaders import TextLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from dotenv import load_dotenv
+# Search with scores to see how well each result matches
+results_with_scores = vector_store.similarity_search_with_score(
+    "pets that need less attention",
+    k=4
+)
 
-load_dotenv()
-
-def build_search_system(docs_path: str):
-    """Build a complete semantic search system."""
-    
-    # 1. Load documents
-    loader = TextLoader(docs_path)
-    raw_docs = loader.load()
-    print(f"Loaded {len(raw_docs)} document(s)")
-    
-    # 2. Split into chunks
-    splitter = RecursiveCharacterTextSplitter(
-        chunk_size=500,
-        chunk_overlap=100,
-    )
-    docs = splitter.split_documents(raw_docs)
-    print(f"Split into {len(docs)} chunks")
-    
-    # 3. Create vector store
-    embeddings = OpenAIEmbeddings()
-    vector_store = FAISS.from_documents(docs, embeddings)
-    print("Created vector store")
-    
-    return vector_store
-
-def search(vector_store, query: str, k: int = 3):
-    """Perform semantic search."""
-    results = vector_store.similarity_search(query, k=k)
-    
-    print(f"\n🔍 Query: {query}")
-    print(f"📄 Top {len(results)} results:\n")
-    
-    for i, doc in enumerate(results):
-        print(f"{i + 1}. {doc.page_content[:100]}...")
-        if doc.metadata:
-            print(f"   Source: {doc.metadata.get('source', 'unknown')}")
-        print()
-
-def main():
-    # Build search system
-    vector_store = build_search_system("./data/knowledge_base.txt")
-    
-    # Interactive search
-    queries = [
-        "How do I use LangChain?",
-        "What are embeddings?",
-        "How do agents work?",
-    ]
-    
-    for query in queries:
-        search(vector_store, query)
-
-if __name__ == "__main__":
-    main()
+for doc, score in results_with_scores:
+    print(f"Score: {score:.4f} - {doc.page_content}")
 ```
+
+### Understanding Scores
+
+- Closer to 1.0 = More similar
+- Closer to 0.0 = Less similar
+- Typically use threshold (e.g., > 0.7) to filter results
 
 ---
 
-## 🏷️ Document Metadata
+## ⚡ Part 5: Batch Processing
 
-Metadata helps you track document source, filter by category, and understand context:
+### Example 8: Batch Embeddings
+
+**Code**: [`code/08_batch_embeddings.py`](./code/08_batch_embeddings.py)  
+**Run**: `python 07-documents-embeddings-semantic-search/code/08_batch_embeddings.py`
 
 ```python
-from langchain_core.documents import Document
+texts = ["Text 1", "Text 2", "Text 3", ...]
 
-doc = Document(
-    page_content="LangChain is a framework...",
-    metadata={
-        "source": "langchain-guide.md",
-        "category": "tutorial",
-        "date": "2024-01-15",
-        "author": "Tech Team",
-    },
-)
+# Slow: One at a time
+for text in texts:
+    embedding = embeddings.embed_query(text)  # ❌ Inefficient
+
+# Fast: Batch processing
+batch_embeddings = embeddings.embed_documents(texts)  # ✅ Much faster!
 ```
+
+**Key Takeaways:**
+- Batch processing is typically faster
+- Reduces API calls (lower costs)
+- Always use `embed_documents()` for multiple texts
+
+---
+
+## 🧮 Part 6: Embedding Relationships (Bonus)
+
+### Example 9: Vector Math Demo
+
+**Code**: [`code/09_embedding_relationships.py`](./code/09_embedding_relationships.py)  
+**Run**: `python 07-documents-embeddings-semantic-search/code/09_embedding_relationships.py`
+
+Embeddings capture semantic relationships that can be manipulated through vector arithmetic:
+
+```
+Embedding("Puppy") - Embedding("Dog") + Embedding("Cat") ≈ Embedding("Kitten")
+```
+
+This works because embeddings encode relationships like species and life stage as separate dimensions.
 
 ---
 
@@ -377,18 +405,44 @@ doc = Document(
 
 - **Document loaders** read various file formats into Documents
 - **Text splitters** break documents into manageable chunks
-- **Embeddings** convert text into numerical vectors
+- **Chunk overlap** preserves context between chunks
+- **Embeddings** convert text into numerical vectors using Azure AI
 - **Vector stores** enable fast similarity search
 - **Semantic search** finds content by meaning, not keywords
 - **Metadata** helps organize and filter documents
+- **Batch processing** is more efficient than individual calls
 
 ---
 
 ## 📦 Dependencies
 
+The course uses `langchain-openai` for Azure OpenAI embeddings:
+
 ```bash
-pip install langchain langchain-openai langchain-community faiss-cpu python-dotenv
+pip install langchain langchain-openai langchain-core langchain-text-splitters python-dotenv
 ```
+
+---
+
+## 🔧 Environment Variables
+
+Make sure these environment variables are set:
+
+```bash
+AI_ENDPOINT=your-azure-endpoint
+AI_API_KEY=your-api-key
+AI_EMBEDDING_MODEL=text-embedding-ada-002
+```
+
+---
+
+## 🏆 Assignment
+
+Ready to practice? Complete the challenges in [assignment.md](./assignment.md)!
+
+The assignment includes:
+1. **Similarity Explorer** - Discover how embeddings capture semantic similarity
+2. **Semantic Book Search** (Bonus) - Build a book recommendation system using semantic search
 
 ---
 
